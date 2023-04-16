@@ -15,6 +15,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $brand_ct_id
  * @property integer $pr_ct_id
  * @property integer $pr_access_id
+ * @property integer $product_id
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -25,6 +26,7 @@ use yii\behaviors\TimestampBehavior;
  * @property \common\models\BrandCategories $brandCt
  * @property \common\models\ProductAccessory $prAccess
  * @property \common\models\ProductCategories $prCt
+ * @property \common\models\Products $product
  * @property string $aliasModel
  */
 abstract class RelPrCt extends \yii\db\ActiveRecord
@@ -61,10 +63,11 @@ abstract class RelPrCt extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['brand_ct_id', 'pr_ct_id', 'pr_access_id', 'status', 'is_deleted'], 'integer'],
+            [['brand_ct_id', 'pr_ct_id', 'pr_access_id', 'product_id', 'status', 'is_deleted'], 'integer'],
             [['brand_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\BrandCategories::className(), 'targetAttribute' => ['brand_ct_id' => 'id']],
             [['pr_access_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\ProductAccessory::className(), 'targetAttribute' => ['pr_access_id' => 'id']],
-            [['pr_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\ProductCategories::className(), 'targetAttribute' => ['pr_ct_id' => 'id']]
+            [['pr_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\ProductCategories::className(), 'targetAttribute' => ['pr_ct_id' => 'id']],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\Products::className(), 'targetAttribute' => ['product_id' => 'id']]
         ];
     }
 
@@ -78,6 +81,7 @@ abstract class RelPrCt extends \yii\db\ActiveRecord
             'brand_ct_id' => Yii::t('models', 'Brand Ct ID'),
             'pr_ct_id' => Yii::t('models', 'Pr Ct ID'),
             'pr_access_id' => Yii::t('models', 'Pr Access ID'),
+            'product_id' => Yii::t('models', 'Product ID'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),
@@ -98,6 +102,7 @@ abstract class RelPrCt extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+
     public function getPrAccess()
     {
         return $this->hasOne(\common\models\ProductAccessory::className(), ['id' => 'pr_access_id']);
@@ -109,6 +114,14 @@ abstract class RelPrCt extends \yii\db\ActiveRecord
     public function getPrCt()
     {
         return $this->hasOne(\common\models\ProductCategories::className(), ['id' => 'pr_ct_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(\common\models\Products::className(), ['id' => 'product_id']);
     }
 
 

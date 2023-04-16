@@ -23,6 +23,7 @@ class m230416_100756_create_rel_pr_ct_table extends Migration
             'brand_ct_id' => $this->integer(11)->null(),
             'pr_ct_id' => $this->integer(11)->null(),
             'pr_access_id' => $this->integer(11)->null(),
+            'product_id' => $this->integer(11)->null(),
 
             'status' => $this->tinyInteger(1)->notNull()->defaultValue(1),
             'is_deleted' => $this->tinyInteger(1)->notNull()->defaultValue(0),
@@ -45,7 +46,7 @@ class m230416_100756_create_rel_pr_ct_table extends Migration
             'brand_ct_id',
             'brand_categories',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
 
         // product_category_rel_pr_ct_brand_ct_id
@@ -61,7 +62,7 @@ class m230416_100756_create_rel_pr_ct_table extends Migration
             'pr_ct_id',
             'product_categories',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
 
         // product_accessory_rel_pr_ct_brand_ct_id
@@ -77,7 +78,22 @@ class m230416_100756_create_rel_pr_ct_table extends Migration
             'pr_access_id',
             'product_accessory',
             'id',
-            'CASCADE'
+            'RESTRICT'
+        );
+
+        $this->createIndex(
+            'idx-product_rel_pr_ct_product_id',
+            'rel_pr_ct',
+            'product_id'
+        );
+
+        $this->addForeignKey(
+            'fk-product_rel_pr_ct_product_id',
+            'rel_pr_ct',
+            'product_id',
+            'products',
+            'id',
+            'RESTRICT'
         );
     }
 
@@ -88,37 +104,37 @@ class m230416_100756_create_rel_pr_ct_table extends Migration
     {
 
        // brand_category drops
-        $this->dropIndex(
-            'idx-brand_category_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
-
-        $this->dropForeignKey(
-            'fk-brand_category_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
+//        $this->dropIndex(
+//            'idx-brand_category_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
+//
+//        $this->dropForeignKey(
+//            'fk-brand_category_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
 
         // product_category drops
-        $this->dropIndex(
-            'idx-product_category_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
-
-        $this->dropForeignKey(
-            'fk-product_category_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
+//        $this->dropIndex(
+//            'idx-product_category_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
+//
+//        $this->dropForeignKey(
+//            'fk-product_category_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
 
         // product_accessory drops
-        $this->dropIndex(
-            'idx-product_accessory_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
-
-        $this->dropForeignKey(
-            'fk-product_accessory_rel_pr_ct_brand_ct_id',
-            'rel_pr_ct'
-        );
+//        $this->dropIndex(
+//            'idx-product_accessory_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
+//
+//        $this->dropForeignKey(
+//            'fk-product_accessory_rel_pr_ct_brand_ct_id',
+//            'rel_pr_ct'
+//        );
 
         $this->dropTable('{{%rel_pr_ct}}');
     }

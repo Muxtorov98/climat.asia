@@ -2,6 +2,8 @@
 
 namespace backend\modules\catalog\controllers;
 
+use backend\modules\catalog\forms\ProductCreateFrom;
+use backend\modules\catalog\forms\ProductUpdateFrom;
 use common\models\Products;
 use Yii;
 use yii\helpers\Url;
@@ -14,13 +16,13 @@ class ProductsController extends \backend\modules\catalog\controllers\base\Produ
 {
     public function actionCreate()
     {
-        $model = new Products;
+        $model = new ProductCreateFrom;
         try {
             if ($model->load($_POST)) {
                 $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
-                if ($model->validate()) {
+                if ($model->validate(false)) {
                     $model->uploadPhoto();
-                    $model->save(false);
+                    $model->saveData();
                     Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
                     return $this->redirect(['index']);
                 } elseif (!\Yii::$app->request->isPost) {
@@ -38,18 +40,17 @@ class ProductsController extends \backend\modules\catalog\controllers\base\Produ
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load($_POST)) {
-            $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
-            if ($model->photoFile !== null) {
-                $model->updatePhoto();
+        $form = new ProductUpdateFrom($model);
+        if ($form->load($_POST)) {
+            $form->photoFile = UploadedFile::getInstance($form, 'photoFile');
+            if ($form->photoFile !== null) {
+                $form->updatePhoto();
             }
-            $model->save(false);
+            $form->saveData();
             return $this->redirect(Url::previous());
         } else {
             return $this->render('update', [
-                'model' => $model,
-                'id' => $id
+                'model' => $form
             ]);
         }
     }

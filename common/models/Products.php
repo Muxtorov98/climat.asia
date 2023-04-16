@@ -14,7 +14,9 @@ class Products extends BaseProducts
 {
 
     const PATH_PHOTO = '/uploads/photos/product';
-    public $photoFile;
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
 
     public function behaviors()
     {
@@ -31,7 +33,6 @@ class Products extends BaseProducts
         return ArrayHelper::merge(
             parent::rules(),
             [
-                [['photoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg,jpg,jpeg,jfif'],
                 # custom validation rules
             ]
         );
@@ -45,6 +46,7 @@ class Products extends BaseProducts
 
         return ++$lastId;
     }
+
 
     public static function getPhotoAlias()
     {
@@ -66,32 +68,44 @@ class Products extends BaseProducts
         return unlink(self::getPhotoAlias() . '/' . $this->image);
     }
 
-    public function generatePhotoName()
+    #region iSOLID
+    public static function create($name, $description, $text, $image, $status)
     {
-        return 'product_' . Products::getLastId() . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
+        $newModel = new Products;
+        $newModel->name = $name;
+        $newModel->description = $description;
+        $newModel->text = $text;
+        $newModel->image = $image;
+        $newModel->url = randomString();
+        $newModel->status = $status;
+        return $newModel;
     }
 
-    public function updatePhoto()
+    public function editData($name, $description, $text, $image, $url, $status)
     {
-        if ($this->isPhotoExists()) {
-            $this->deletePhoto();
-        }
-        $this->uploadPhoto();
+        $this->name = $name;
+        $this->description = $description;
+        $this->text = $text;
+        $this->image = $image;
+        $this->url = $url;
+        $this->status = $status;
     }
+    #endregion
 
-    public function uploadPhoto()
+    #region Checkers
+    public function isCurrentPrice($price)
     {
-        if ($this->validate()) {
-            $path = Products::getPhotoAlias();
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-            $photoName = $this->generatePhotoName();
-            $this->photoFile->saveAs($path . '/' . $photoName);
-            $this->image = $photoName;
-            return true;
-        } else {
-            return false;
-        }
+        return $this->getActivePrice() === $price;
     }
+    #endregion
+
+    #region Getter
+    public function getActivePrice()
+    {
+        return $this->getProductPrices()
+            ->select('price')
+            ->active()
+            ->scalar();
+    }
+    #endregion
 }

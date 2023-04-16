@@ -9,11 +9,16 @@ namespace common\models\query;
  */
 class BrandCategories extends \yii\db\ActiveQuery
 {
-    /*public function active()
+
+    const STATUS_ACTIVE = 1;
+    public $tableName = 'rel_pr_ct';
+    public $tableNameBrand = 'brand_categories';
+
+    public function active()
     {
-        $this->andWhere('[[status]]=1');
-        return $this;
-    }*/
+        return $this->andWhere(['status' => self::STATUS_ACTIVE]);
+
+    }
 
     /**
      * @inheritdoc
@@ -32,4 +37,16 @@ class BrandCategories extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function byProductId(int $product_id)
+    {
+        return $this->andWhere(["$this->tableName.product_id" => $product_id]);
+    }
+
+    public function activeJoin()
+    {
+        return $this->andWhere(["$this->tableNameBrand.status" => self::STATUS_ACTIVE]);
+
+    }
+
 }

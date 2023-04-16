@@ -9,12 +9,12 @@ namespace common\models\query;
  */
 class ProductPrice extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    const STATUS_ACTIVE = 1;
+    public function active()
     {
-        $this->andWhere('[[status]]=1');
-        return $this;
-    }*/
+        return $this->andWhere(['status' => self::STATUS_ACTIVE]);
 
+    }
     /**
      * @inheritdoc
      * @return \common\models\ProductPrice[]|array
@@ -31,5 +31,10 @@ class ProductPrice extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    public function byProductId(int $product_id)
+    {
+        return $this->andWhere(['product_id' => $product_id]);
     }
 }

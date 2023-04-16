@@ -25,7 +25,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\ProductPrice[] $productPrices
+ * @property \common\models\ProductPrice $productPrices
+ * @property \common\models\RelPrCt $relPrCt
  * @property string $aliasModel
  */
 abstract class Products extends \yii\db\ActiveRecord
@@ -97,11 +98,16 @@ abstract class Products extends \yii\db\ActiveRecord
      */
     public function getProductPrices()
     {
-        return $this->hasMany(\common\models\ProductPrice::className(), ['product_id' => 'id']);
+        return $this->hasOne(\common\models\ProductPrice::class, ['product_id' => 'id']);
     }
 
 
-    
+    public function getRelPrCt()
+    {
+        return $this->hasOne(\common\models\RelPrCt::class, ['product_id' => 'id']);
+    }
+
+
     /**
      * @inheritdoc
      * @return \common\models\query\Products the active query used by this AR class.

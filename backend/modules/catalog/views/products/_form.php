@@ -1,5 +1,6 @@
 <?php
 
+use common\helpers\ProductHelper;
 use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -38,18 +39,8 @@ use yii\helpers\StringHelper;
     <div class="">
 
         <p>
-            
-
-<!-- attribute name -->
 			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute text -->
 			<?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
-
-<!-- attribute url -->
-			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute image -->
             <?= $form->field($model, 'photoFile')->widget(FileInput::class,
                 [
                     'pluginOptions' => [
@@ -59,12 +50,13 @@ use yii\helpers\StringHelper;
                         'showUpload' => false,
                     ]
                 ]); ?>
-<!-- attribute description -->
 			<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-            <!-- attribute status -->
-            <?= $form->field($model, 'status')->textInput() ?>
+			<?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandUpdateList($model->id)) ?>
+			<?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList()) ?>
+			<?= $form->field($model, 'pr_access_id')->dropDownList(ProductHelper::getPrAccessIdList()) ?>
+            <?= $form->field($model, 'status')->dropDownList(ProductHelper::getStatusList()) ?>
         </p>
-
 
         <hr/>
 
@@ -72,7 +64,7 @@ use yii\helpers\StringHelper;
         <div class="text-center">
             <?= Html::submitButton(
                 '<span class="glyphicon glyphicon-check"></span> ' .
-                ($model->isNewRecord ? 'Create' : 'Save'),
+                ('Save'),
                 [
                     'id' => 'save-' . $model->formName(),
                     'class' => 'btn btn-success'
@@ -80,7 +72,6 @@ use yii\helpers\StringHelper;
             );
             ?>
         </div>
-
 
         <?php ActiveForm::end(); ?>
 

@@ -87,7 +87,7 @@ abstract class ProductPrice extends \yii\db\ActiveRecord
      */
     public function getProduct()
     {
-        return $this->hasOne(\common\models\Products::className(), ['id' => 'product_id']);
+        return $this->hasMany(\common\models\Products::className(), ['id' => 'product_id']);
     }
 
 

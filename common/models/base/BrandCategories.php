@@ -92,7 +92,6 @@ abstract class BrandCategories extends \yii\db\ActiveRecord
         return $this->hasMany(\common\models\RelPrCt::className(), ['brand_ct_id' => 'id']);
     }
 
-
     
     /**
      * @inheritdoc

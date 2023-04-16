@@ -228,10 +228,16 @@ function api_sortby($sortby, $sort, $prefix = null)
     return array($sortby => $sort);
 }
 
-function isJsonMK($string)
+function isJson($string)
 {
     json_decode($string);
     return json_last_error() === JSON_ERROR_NONE;
 }
+
+function randomString(){
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    return substr(str_shuffle($characters), 0, 6);
+}
+
 
 

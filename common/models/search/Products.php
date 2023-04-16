@@ -55,6 +55,8 @@ if (!$this->validate()) {
 return $dataProvider;
 }
 
+$query->no_deleted();
+
 $query->andFilterWhere([
             'id' => $this->id,
             'viewed' => $this->viewed,

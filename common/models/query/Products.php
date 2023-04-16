@@ -37,4 +37,9 @@ class Products extends \yii\db\ActiveQuery
     {
         return $this->orderBy(['id' => SORT_DESC]);
     }
+
+    public function no_deleted()
+    {
+        return $this->andWhere(['is_deleted' => 0]);
+    }
 }
