@@ -32,4 +32,9 @@ class Products extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function sort_desc()
+    {
+        return $this->orderBy(['id' => SORT_DESC]);
+    }
 }

@@ -31,7 +31,7 @@ class Products extends BaseProducts
         return ArrayHelper::merge(
             parent::rules(),
             [
-                [['photoFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,jpg,jpeg,jfif'],
+                [['photoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg,jpg,jpeg,jfif'],
                 # custom validation rules
             ]
         );
@@ -40,7 +40,7 @@ class Products extends BaseProducts
     public static function getLastId()
     {
         $lastId = Products::find()->select('id')
-            ->orderBy(['id' => SORT_DESC])
+            ->sort_desc()
             ->scalar() ?: 0;
 
         return ++$lastId;
