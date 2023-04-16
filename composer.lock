@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54c1fb12f81382248431fc6be3c54921",
+    "content-hash": "110e2c61033ebd8e411e6d8665db3257",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -299,6 +299,66 @@
                 "source": "https://github.com/cebe/yii2-gravatar"
             },
             "time": "2013-12-10T17:49:58+00:00"
+        },
+        {
+            "name": "cetver/yii2-language-selector",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cetver/yii2-language-selector.git",
+                "reference": "d4c4af50bb4df43f781e7d6b9ed649f0bb42e9cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cetver/yii2-language-selector/zipball/d4c4af50bb4df43f781e7d6b9ed649f0bb42e9cd",
+                "reference": "d4c4af50bb4df43f781e7d6b9ed649f0bb42e9cd",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "^2.0.13"
+            },
+            "require-dev": {
+                "codeception/base": "^2.2.3",
+                "codeception/specify": "~0.4.3",
+                "codeception/verify": "~0.3.1",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cetver\\LanguageSelector\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Cetvertacov",
+                    "email": "cetver@gmail.com"
+                }
+            ],
+            "description": "Provides the configuration for the language selector for the Yii framework 2.0",
+            "keywords": [
+                "change",
+                "extension",
+                "i18n",
+                "internationalization",
+                "language",
+                "locale",
+                "pick",
+                "select",
+                "switch",
+                "toggle",
+                "url",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/cetver/yii2-language-selector/issues",
+                "source": "https://github.com/cetver/yii2-language-selector"
+            },
+            "time": "2018-01-13T13:08:02+00:00"
         },
         {
             "name": "cmrcx/phptidy",

@@ -20,7 +20,22 @@ use yii\helpers\Html;
             <ul class="nav navbar-nav">
 
                 <!-- Messages: style can be found in dropdown.less-->
-
+                <li>
+                    <?php $languageItem = new  cetver\LanguageSelector\items\DropDownLanguageItem([
+                        'languages' => [
+                            'uz' => '<span class="flag-icon flag-icon-de"></span> O`zbek',
+                            'en' => '<span class="flag-icon flag-icon-us"></span> English',
+                            'ru' => '<span class="flag-icon flag-icon-ru"></span> Russian',
+                        ],
+                        'options' => ['encode' => false],
+                    ]);
+                    echo \yii\bootstrap\Nav::widget([
+                        'options' => ['class' => 'navbar-nav navbar-right'],
+                        'items' => [
+                            $languageItem->toArray()
+                        ]
+                    ]);?>
+                </li>
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
