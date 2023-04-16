@@ -19,6 +19,9 @@ return [
         'settings' => [
             'class' => 'backend\modules\settings\Module',
         ],
+        'catalog' => [
+            'class' => 'backend\modules\catalog\Catalog',
+        ],
     ],
     'components' => [
         'request' => [
