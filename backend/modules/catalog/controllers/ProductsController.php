@@ -36,11 +36,11 @@ class ProductsController extends \backend\modules\catalog\controllers\base\Produ
         return $this->render('create', ['model' => $model]);
     }
 
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
         $form = new ProductUpdateFrom($model);
+        try {
         if ($form->load($_POST)) {
             $form->photoFile = UploadedFile::getInstance($form, 'photoFile');
             if ($form->photoFile !== null) {
@@ -48,10 +48,16 @@ class ProductsController extends \backend\modules\catalog\controllers\base\Produ
             }
             $form->saveData();
             return $this->redirect(Url::previous());
-        } else {
-            return $this->render('update', [
-                'model' => $form
-            ]);
+           } elseif (!\Yii::$app->request->isPost) {
+              $model->load($_GET);
+           }
+        } catch (\Exception $e) {
+            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            $model->addError('_exception', $msg);
         }
+        return $this->render('update', [
+            'model' => $form
+        ]);
+
     }
 }
