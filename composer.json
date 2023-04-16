@@ -1,7 +1,7 @@
 {
-    "name": "iabbos/yii2-starter-kit",
-    "description": "Abbos's yii2 starter kit",
-    "keywords": ["imaf", "yii2", "starter kit", "iAbbos"],
+    "name": "itulqin/yii2-starter-kit",
+    "description": "Tulqin yii2 starter kit",
+    "keywords": ["imaf", "yii2", "starter kit", "iTulqin"],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
