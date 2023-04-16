@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = 'Edit';
     <div class="crud-navigation">
         <?= Html::a('<span class="glyphicon glyphicon-file"></span> ' . 'View', ['view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
     </div>
-
+    <hr>
 
     <?php $form = ActiveForm::begin([
             'id' => 'Products',
