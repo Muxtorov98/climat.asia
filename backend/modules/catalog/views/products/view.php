@@ -70,9 +70,13 @@ $this->params['breadcrumbs'][] = 'View';
     'attributes' => [
         'name',
         'text:ntext',
-        'viewed',
+       // 'viewed',
         'status',
-        'image',
+        [
+            'attribute' => 'image',
+            'value' => $model->getPhotoSrc(),
+            'format' => ['image', ['width' => 100, 'height' => 100]]
+        ],
         'description',
     ],
     ]); ?>

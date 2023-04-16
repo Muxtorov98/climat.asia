@@ -23,7 +23,7 @@ use yii\helpers\Html;
                 <li>
                     <?php $languageItem = new  cetver\LanguageSelector\items\DropDownLanguageItem([
                         'languages' => [
-                            'uz' => '<span class="flag-icon flag-icon-de"></span> O`zbek',
+                            'uz' => '<span class="flag-icon flag"></span> O`zbek',
                             'en' => '<span class="flag-icon flag-icon-us"></span> English',
                             'ru' => '<span class="flag-icon flag-icon-ru"></span> Russian',
                         ],

@@ -56,8 +56,10 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             ],
             [
                 'attribute' => 'image',
-                'width' => '10%',
-                'hAlign' => 'center',
+                'value' => function (\common\models\Products $model){
+                    return $model->getPhotoSrc();
+                },
+                'format' => ['image', ['width' => 100, 'height' => 50]]
             ],
             [
                 'attribute' => 'description',
