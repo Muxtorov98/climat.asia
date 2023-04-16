@@ -5,7 +5,6 @@ use common\models\BrandCategories;
 use common\models\ProductAccessory;
 use common\models\ProductCategories;
 use common\models\Products;
-use common\models\RelPrCt;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;

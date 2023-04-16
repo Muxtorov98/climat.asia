@@ -40,10 +40,7 @@ class Products extends BaseProducts
 
     public static function getLastId()
     {
-        $lastId = Products::find()->select('id')
-            ->sort_desc()
-            ->scalar() ?: 0;
-
+        $lastId = Products::find()->select('id')->sort_desc()->scalar() ?: 0;
         return ++$lastId;
     }
 
@@ -102,10 +99,7 @@ class Products extends BaseProducts
     #region Getter
     public function getActivePrice()
     {
-        return $this->getProductPrices()
-            ->select('price')
-            ->active()
-            ->scalar();
+        return $this->getProductPrices()->select('price')->active()->scalar();
     }
     #endregion
 }
