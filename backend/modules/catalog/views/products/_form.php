@@ -60,7 +60,7 @@ use yii\helpers\StringHelper;
 
         <hr/>
 
-        <?php echo $form->errorSummary($model); ?>
+
         <div class="text-center">
             <?= Html::submitButton(
                 '<span class="glyphicon glyphicon-check"></span> ' .

@@ -37,12 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     );
     ?>
-
     <div class="">
 
         <p>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'text')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'photoFile')->widget(FileInput::class,
                 [
                     'pluginOptions' => [
@@ -52,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'showUpload' => false,
                     ]
                 ]); ?>
-            <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandList()) ?>
             <?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList()) ?>
