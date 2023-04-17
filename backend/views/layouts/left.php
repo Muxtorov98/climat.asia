@@ -32,7 +32,8 @@
                     ['label' => Yii::t('ui', 'Products'), 'url' => ['/catalog/products/index'], 'icon' => 'home'],
                     ['label' => Yii::t('ui', 'Brand-categories'), 'url' => ['/catalog/brand-categories/index'], 'icon' => 'home'],
                     ['label' => Yii::t('ui', 'Product-categories'), 'url' => ['/catalog/product-categories/index'], 'icon' => 'home'],
-                    ['label' => Yii::t('ui', 'product-accessory'), 'url' => ['/catalog/product-accessory/index'], 'icon' => 'home'],
+                    ['label' => Yii::t('ui', 'Product-accessory'), 'url' => ['/catalog/product-accessory/index'], 'icon' => 'home'],
+                    ['label' => Yii::t('ui', 'Certificate'), 'url' => ['/catalog/certificate'], 'icon' => 'home'],
                     ['label' => Yii::t('ui', 'Settings'), 'icon' => 'cogs', 'items' => [
                         [
                             'label' => Yii::t('ui', 'Translations'),

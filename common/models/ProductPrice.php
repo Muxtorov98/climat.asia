@@ -21,7 +21,6 @@ class ProductPrice extends BaseProductPrice
             $related = $this->getRelatedRecords();
             /** @var Products $products */
             if (isset($related['products']) && $products = $related['products']) {
-                $products->save(false);
                 $this->product_id = $products->id;
             }
             return true;

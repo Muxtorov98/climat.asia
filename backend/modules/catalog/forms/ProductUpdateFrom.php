@@ -37,7 +37,7 @@ class ProductUpdateFrom extends Model
         $this->image = $products->image;
         $this->text = $products->text;
         $this->description = $products->description;
-        $this->price = $products->productPrices->price;
+        $this->price = $products->getActivePrice();
         $this->url = $products->url;
         $this->status = $products->status;
         $this->brand_ct_id = $products->relPrCt->brandCt->id;
@@ -49,8 +49,8 @@ class ProductUpdateFrom extends Model
     public function rules()
     {
         return [
-            [['name', 'brand_ct_id'], 'required'],
-            [['text'], 'string'],
+			[['name', 'pr_ct_id', 'brand_ct_id','price','text'], 'required'],
+			[['text'], 'string'],
             [['viewed', 'price', 'pr_access_id', 'pr_ct_id', 'brand_ct_id', 'status'], 'integer'],
             [['pr_access_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductAccessory::class, 'targetAttribute' => ['pr_access_id' => 'id']],
             [['pr_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategories::class, 'targetAttribute' => ['pr_ct_id' => 'id']],
@@ -88,8 +88,6 @@ class ProductUpdateFrom extends Model
             return false;
         }
     }
-
-
     public function saveData()
     {
         $this->products->editData(
@@ -101,17 +99,17 @@ class ProductUpdateFrom extends Model
             $this->status
         );
 
-        $relPrCtModel = RelPrCt::relByProductId($this->products->id);
+        $relPrCtModel = RelPrCt::relByProductId($this->id);
 
         $relPrCtModel->editData(
-            $this->products->id,
+            $this->id,
             $this->brand_ct_id,
             $this->pr_ct_id,
             $this->pr_access_id
         );
 
-        $newPrice = ProductPrice::createByProductId(
-            $this->products->id,
+        $newPrice = ProductPrice::create(
+            $this->products,
             $this->price
         );
 
@@ -127,7 +125,8 @@ class ProductUpdateFrom extends Model
             }
 
             if (!$this->products->isCurrentPrice($this->price)){
-                $oldPrices = ProductPrice::priceByProductId($this->products->id);
+
+                $oldPrices = ProductPrice::priceByProductId($this->id);
 
                 foreach ($oldPrices as $oldPrice) {
                     $oldPrice->inactivate();
@@ -140,7 +139,6 @@ class ProductUpdateFrom extends Model
                     throw new \Exception('Произошла ошибка при сохранении данных.');
                 }
             }
-
 
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
             $transaction->commit();

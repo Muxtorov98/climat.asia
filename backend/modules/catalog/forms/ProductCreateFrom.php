@@ -32,7 +32,7 @@ class ProductCreateFrom extends Model
     public function rules()
     {
         return [
-            [['name', 'pr_access_id', 'pr_ct_id', 'brand_ct_id','price','text'], 'required'],
+            [['name', 'pr_ct_id', 'brand_ct_id','price','text'], 'required'],
             [['text'], 'string'],
             [['viewed', 'price', 'pr_access_id', 'pr_ct_id', 'brand_ct_id', 'status'], 'integer'],
             [['pr_access_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductAccessory::class, 'targetAttribute' => ['pr_access_id' => 'id']],
@@ -88,7 +88,10 @@ class ProductCreateFrom extends Model
 
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            if (!$priceModel->save(false)) {
+            if (!$productModel->save(false)) {
+                throw new \Exception('Произошла ошибка при сохранении данных. ProductPrice');
+            }
+			if (!$priceModel->save(false)) {
                 throw new \Exception('Произошла ошибка при сохранении данных. ProductPrice');
             }
             if (!$relPrCtModel->save(false)) {
