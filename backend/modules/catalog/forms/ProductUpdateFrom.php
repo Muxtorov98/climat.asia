@@ -49,7 +49,7 @@ class ProductUpdateFrom extends Model
     public function rules()
     {
         return [
-			[['name', 'pr_ct_id', 'brand_ct_id','price','text'], 'required'],
+			[['name', 'price','text'], 'required'],
 			[['text'], 'string'],
             [['viewed', 'price', 'pr_access_id', 'pr_ct_id', 'brand_ct_id', 'status'], 'integer'],
             [['pr_access_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductAccessory::class, 'targetAttribute' => ['pr_access_id' => 'id']],

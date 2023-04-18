@@ -47,8 +47,8 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
         <?php $models = \common\models\Certificate::find()->all(); ?>
         <div class="row">
             <?php foreach ($models as $ima): ?>
-                 <a href="<?=$ima->id?>" class="col-md-2">
-                    <?= Html::img($ima->getPhotoSrc(), ['class' => 'img-responsive']) ?>
+                 <a href="<?=$ima->id?>">
+                     <img style="width: 200px; height: 200px; margin: 3px" src="<?= $ima->getPhotoSrc() ?>" alt="certificate image">
                  </a>
             <?php endforeach; ?>
         </div>

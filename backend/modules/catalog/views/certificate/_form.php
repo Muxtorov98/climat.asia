@@ -44,9 +44,6 @@ use yii\helpers\StringHelper;
                     'accept' => 'image/*',
                 ],
                 'pluginOptions' => [
-//                    'initialPreview' => [
-//                        Html::img('/uploads/photos/certificate/certificate_83-1681763288835.png', ['class' => 'file-preview-image', 'alt' => 'Default Image']),
-//                    ],
                     'initialPreviewConfig' => [
                         ['caption' => 'Moon.jpg', 'size' => '873727'],
                         ['caption' => 'Earth.jpg', 'size' => '1287883'],

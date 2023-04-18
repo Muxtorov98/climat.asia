@@ -65,9 +65,9 @@ $this->params['breadcrumbs'][] = 'Edit';
                 ]); ?>
 			<?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandList()) ?>
-            <?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList()) ?>
-            <?= $form->field($model, 'pr_access_id')->dropDownList(ProductHelper::getPrAccessIdList()) ?>
+            <?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
+            <?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
+            <?= $form->field($model, 'pr_access_id')->dropDownList(ProductHelper::getPrAccessIdList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
             <?= $form->field($model, 'status')->dropDownList(ProductHelper::getStatusList()) ?>
         </p>
 
