@@ -20,7 +20,11 @@ class m230416_082925_create_brand_categoerys_table extends Migration
         $this->createTable('{{%brand_categories}}', [
             'id' => $this->primaryKey(),
 
-            'name' => $this->string(255)->unique()->notNull(),
+            'name_uz' => $this->string(255)->null(),
+            'name_ru' => $this->string(255)->unique()->notNull(),
+            'description_uz' => $this->text()->null(),
+            'description_ru' => $this->text()->null(),
+
             'image' => $this->string(255)->null(),
             'url' => $this->string(255)->unique()->null(),
 

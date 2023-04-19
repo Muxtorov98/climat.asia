@@ -21,11 +21,11 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'url') ?>
 
-		<?= $form->field($model, 'name') ?>
+		<?= $form->field($model, 'name_'.lange_code()) ?>
 
 		<?= $form->field($model, 'image') ?>
 
-		<?= $form->field($model, 'description') ?>
+		<?= $form->field($model, 'description_'.lange_code()) ?>
 
 		<?php // echo $form->field($model, 'text') ?>
 

@@ -12,6 +12,6 @@ return [
         'uz' => 'O`zbek',
 //        'oz' => 'Ўзбек',
         'ru' => 'Русский',
-        'en' => 'English'
+//        'en' => 'English'
     ]
 ];

@@ -15,10 +15,13 @@ class ProductUpdateFrom extends Model
 {
 
     public int $id;
-    public $name;
-    public $text;
+    public $name_uz;
+    public $name_ru;
+    public $text_ru;
+    public $text_uz;
     public $viewed;
-    public $description;
+    public $description_uz;
+    public $description_ru;
     public $price;
     public $url;
     public $status;
@@ -33,10 +36,13 @@ class ProductUpdateFrom extends Model
     {
         $this->products = $products;
         $this->id = $products->id;
-        $this->name = $products->name;
+        $this->name_uz = $products->name_uz;
+        $this->name_ru = $products->name_ru;
         $this->image = $products->image;
-        $this->text = $products->text;
-        $this->description = $products->description;
+        $this->text_uz = $products->text_uz;
+        $this->text_ru = $products->text_ru;
+        $this->description_uz = $products->description_uz;
+        $this->description_ru = $products->description_ru;
         $this->price = $products->getActivePrice();
         $this->url = $products->url;
         $this->status = $products->status;
@@ -49,13 +55,13 @@ class ProductUpdateFrom extends Model
     public function rules()
     {
         return [
-			[['name', 'price','text'], 'required'],
-			[['text'], 'string'],
+			[['name_ru', 'price','text'], 'required'],
+            [['text_uz', 'text_ru'], 'string'],
             [['viewed', 'price', 'pr_access_id', 'pr_ct_id', 'brand_ct_id', 'status'], 'integer'],
             [['pr_access_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductAccessory::class, 'targetAttribute' => ['pr_access_id' => 'id']],
             [['pr_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategories::class, 'targetAttribute' => ['pr_ct_id' => 'id']],
             [['brand_ct_id'], 'exist', 'skipOnError' => true, 'targetClass' => BrandCategories::class, 'targetAttribute' => ['brand_ct_id' => 'id']],
-            [['url', 'name', 'image', 'description'], 'string', 'max' => 255],
+            [['url', 'name_uz', 'nome_ru', 'image', 'description_uz', 'description_ru'], 'string', 'max' => 255],
             [['url'], 'unique'],
             [['photoFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,jpg,jpeg,jfif'],
         ];
@@ -91,9 +97,12 @@ class ProductUpdateFrom extends Model
     public function saveData()
     {
         $this->products->editData(
-            $this->name,
-            $this->description,
-            $this->text,
+            $this->name_uz,
+            $this->name_ru,
+            $this->description_uz,
+            $this->description_ru,
+            $this->text_uz,
+            $this->text_ru,
             $this->image,
             $this->url,
             $this->status

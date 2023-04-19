@@ -2,9 +2,11 @@
 
 namespace common\models;
 
+use common\components\localization\Lang;
 use Yii;
 use \common\models\base\Products as BaseProducts;
 use yii\helpers\ArrayHelper;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
 /**
@@ -65,24 +67,63 @@ class Products extends BaseProducts
         return unlink(self::getPhotoAlias() . '/' . $this->image);
     }
 
+    public function getText()
+    {
+        return $this['text_'.lange_code()];
+    }
+    public function getShortDescription($count)
+    {
+        return StringHelper::truncateWords(strip_tags($this['description_'.lange_code()]), $count);
+    }
+
+    public function getShortTex($count)
+    {
+        return StringHelper::truncateWords(strip_tags($this['text_'.lange_code()]), $count);
+    }
+
     #region iSOLID
-    public static function create($name, $description, $text, $image, $status)
+    public static function create(
+        $name_uz,
+        $name_ru,
+        $description_uz,
+        $description_ru,
+        $text_uz,
+        $text_ru,
+        $image,
+        $status
+    )
     {
         $newModel = new Products;
-        $newModel->name = $name;
-        $newModel->description = $description;
-        $newModel->text = $text;
+        $newModel->name_uz = $name_uz;
+        $newModel->name_ru = $name_ru;
+        $newModel->description_uz = $description_uz;
+        $newModel->description_ru = $description_ru;
+        $newModel->text_uz = $text_uz;
+        $newModel->text_ru = $text_ru;
         $newModel->image = $image;
         $newModel->url = randomString();
         $newModel->status = $status;
         return $newModel;
     }
 
-    public function editData($name, $description, $text, $image, $url, $status)
+    public function editData(
+        $name_uz,
+        $name_ru,
+        $description_uz,
+        $description_ru,
+        $text_uz,
+        $text_ru,
+        $image,
+        $url,
+        $status
+    )
     {
-        $this->name = $name;
-        $this->description = $description;
-        $this->text = $text;
+        $this->name_uz = $name_uz;
+        $this->name_ru = $name_ru;
+        $this->description_uz = $description_uz;
+        $this->description_ru = $description_ru;
+        $this->text_uz = $text_uz;
+        $this->text_ru = $text_ru;
         $this->image = $image;
         $this->url = $url;
         $this->status = $status;

@@ -40,26 +40,26 @@ class ProductHelper
     public static function getBrandList(): array
     {
         $brandList = BrandCategories::find()
-            ->select('id, name AS name')
+            ->select('id, name_'.lange_code())
             ->active()
             ->asArray()
             ->all();
 
         return ArrayHelper::map($brandList, 'id', function ($model) {
-            return $model['name'];
+            return $model['name_'.lange_code()];
         });
     }
 
     public static function getPrCtIdList(): array
     {
         $prCtIdList = ProductCategories::find()
-            ->select('id, name AS name')
+            ->select('id, name_'.lange_code())
             ->active()
             ->asArray()
             ->all();
 
         return ArrayHelper::map($prCtIdList, 'id', function ($model) {
-            return $model['name'];
+            return $model['name_'.lange_code()];
         });
     }
 
@@ -67,13 +67,13 @@ class ProductHelper
     public static function getPrAccessIdList(): array
     {
         $PrAccessIdList = ProductAccessory::find()
-            ->select('id, name AS name')
+            ->select('id, name_'.lange_code())
             ->active()
             ->asArray()
             ->all();
 
         return ArrayHelper::map($PrAccessIdList, 'id', function ($model) {
-            return $model['name'];
+            return $model['name_'.lange_code()];
         });
     }
 }

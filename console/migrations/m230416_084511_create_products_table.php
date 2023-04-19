@@ -21,10 +21,13 @@ class m230416_084511_create_products_table extends Migration
 
             'url' => $this->string(255)->unique()->null(),
 
-            'name' => $this->string(255)->notNull(),
+            'name_ru' => $this->string(255)->notNull(),
+            'name_uz' => $this->string(255)->null(),
             'image' => $this->string(255)->null(),
-            'description' => $this->string(255)->null(),
-            'text' => $this->text()->null(),
+            'description_uz' => $this->string(255)->null(),
+            'description_ru' => $this->string(255)->null(),
+            'text_uz' => $this->text()->null(),
+            'text_ru' => $this->text()->null(),
             'viewed' => $this->integer(11)->null(),
 
             'status' => $this->tinyInteger(1)->notNull()->defaultValue(1),

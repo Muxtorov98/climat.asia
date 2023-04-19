@@ -40,8 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="">
 
         <p>
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'text')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'name_uz')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'text_uz')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'text_ru')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'photoFile')->widget(FileInput::class,
                 [
                     'pluginOptions' => [
@@ -51,7 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'showUpload' => false,
                     ]
                 ]); ?>
-            <?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'description_uz')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'description_ru')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
             <?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>

@@ -15,7 +15,7 @@ $copyParams = $model->attributes;
 
 $this->title = Yii::t('models', 'Products');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Products'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => (string)$model['name_'.lange_code()], 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
 <div class="giiant-crud products-view">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = 'View';
     <h1>
         <?= Yii::t('models', 'Products') ?>
         <small>
-            <?= Html::encode($model->name) ?>
+            <?= Html::encode($model['name_'.lange_code()]) ?>
         </small>
     </h1>
 
@@ -68,16 +68,15 @@ $this->params['breadcrumbs'][] = 'View';
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-        'name',
-        'text:ntext',
-       // 'viewed',
+        'name_'.lange_code(),
+        'text_'.lange_code().':ntext',
         'status',
         [
             'attribute' => 'image',
             'value' => $model->getPhotoSrc(),
             'format' => ['image', ['width' => 100, 'height' => 100]]
         ],
-        'description',
+        'description_'.lange_code(),
     ],
     ]); ?>
 

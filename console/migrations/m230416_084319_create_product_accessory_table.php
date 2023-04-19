@@ -19,7 +19,9 @@ class m230416_084319_create_product_accessory_table extends Migration
         $this->createTable('{{%product_accessory}}', [
             'id' => $this->primaryKey(),
 
-            'name' => $this->string(255)->unique()->notNull(),
+            'name_uz' => $this->string(255)->null(),
+            'name_ru' => $this->string(255)->unique()->notNull(),
+
             'image' => $this->string(255)->null(),
             'url' => $this->string(255)->unique()->null(),
 

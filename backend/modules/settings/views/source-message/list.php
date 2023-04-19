@@ -60,10 +60,8 @@ $s = 0;
                                     $lang_code = $message->language;
                                     echo Editable::widget([
                                         'name' => 'translation[' . $lang_code . '][' . $source->id . ']',
-                                        'asPopover' => true,
                                         'value' => $value_lang,
-                                        'header' => 'Translation',
-                                        'placement' => PopoverX::ALIGN_BOTTOM,
+                                        'placement' => PopoverX::ALIGN_RIGHT,
                                         'size' => 'md',
                                         'options' => [
                                             'class' => 'form-control',

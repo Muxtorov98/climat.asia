@@ -20,7 +20,8 @@ class m230416_083725_create_product_categories_table extends Migration
         $this->createTable('{{%product_categories}}', [
             'id' => $this->primaryKey(),
 
-            'name' => $this->string(255)->unique()->notNull(),
+            'name_uz' => $this->string(255)->null(),
+            'name_ru' => $this->string(255)->unique()->notNull(),
             'image' => $this->string(255)->null(),
             'url' => $this->string(255)->unique()->null(),
 

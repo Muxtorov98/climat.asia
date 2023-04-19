@@ -11,7 +11,7 @@ return [
     'id' => 'app-backend',
     'name' => 'Starter Kit - Admin Panel',
     'language'=>'uz',
-    'sourceLanguage'=>'en',
+    'sourceLanguage'=>'uz',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],

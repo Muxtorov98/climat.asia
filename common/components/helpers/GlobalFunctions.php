@@ -82,7 +82,10 @@ function passera($model)
    return $sera;
 }
 
-
+function lange_code()
+{
+   return Yii::$app->language;
+}
 // passport malumotlarini olish api
 function passport($sera, $sera_num, $data)
 {

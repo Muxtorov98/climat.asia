@@ -21,10 +21,9 @@ return [
     'timeZone' => "Asia/Tashkent",
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-//        Production paytida
-//        'assetManager' => [
-//            'appendTimestamp' => true,
-//        ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
         'i18n' => [
             'translations' => [
                 '*' => [

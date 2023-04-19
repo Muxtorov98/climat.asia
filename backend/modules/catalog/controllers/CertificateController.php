@@ -34,4 +34,27 @@ class CertificateController extends \backend\modules\catalog\controllers\base\Ce
         return $this->render('create', ['model' => $model]);
     }
 
+    public function actionView($id)
+    {
+        return $this->renderAjax('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->delete()){
+            $model->deletePhoto();
+            Yii::$app->session->setFlash('success', Yii::t('ui', "Rasim o`chirildi"));
+            return $this->redirect(['index']);
+        }else{
+            return $this->renderAjax('view', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+
 }

@@ -13,10 +13,13 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property string $url
- * @property string $name
+ * @property string $name_uz
+ * @property string $name_ru
  * @property string $image
- * @property string $description
- * @property string $text
+ * @property string $description_uz
+ * @property string $description_ru
+ * @property string $text_uz
+ * @property string $text_ru
  * @property integer $viewed
  * @property integer $status
  * @property integer $is_deleted
@@ -64,9 +67,9 @@ abstract class Products extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['text'], 'string'],
+            [['text_uz', 'text_ru'], 'string'],
             [['viewed', 'status', 'is_deleted'], 'integer'],
-            [['url', 'name', 'image', 'description'], 'string', 'max' => 255],
+            [['url', 'name_uz', 'nane_ru', 'image', 'description_uz', 'description_ru'], 'string', 'max' => 255],
             [['url'], 'unique']
         ];
     }

@@ -1,16 +1,17 @@
 <?php
-
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+$model = \common\models\Products::find()->one();
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>This is the About page. You may modify the following file to customize its content:</p>
-
-    <code><?= __FILE__ ?></code>
-</div>
+<section class="about mega-section" id="about">
+	<div class="container">
+		<!-- Start first about div-->
+        <?= \Yii::$app->view->renderFile('@app/views/component/content-block1.php',
+            [
+                    'model' => $model
+            ]
+        ) ?>
+        <!--End first about div-->
+		<!-- Start first about div-->
+<!--        --><?php //= \Yii::$app->view->renderFile('@app/views/component/content-block.php') ?>
+		<!--End first about div-->
+	</div>
+</section>

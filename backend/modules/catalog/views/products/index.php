@@ -10,7 +10,7 @@ use kartik\grid\GridView;
     * @var common\models\search\Products $searchModel
 */
 
-$this->title = Yii::t('models', 'Products');
+$this->title = Yii::t('ui', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
@@ -44,15 +44,16 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
-                'attribute' => 'name',
+                'attribute' => 'name_'.lange_code(),
                 'vAlign' => 'middle',
                 'width' => '10%',
                 'hAlign' => 'left',
             ],
             [
-                'attribute' => 'text',
-                'width' => '10%',
-                'hAlign' => 'center',
+                'attribute' => 'text_'.lange_code(),
+                'value' => function (\common\models\Products $model){
+                    return $model->getShortTex(20);
+                },
             ],
             [
                 'attribute' => 'image',
@@ -62,9 +63,10 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'format' => ['image', ['width' => 100, 'height' => 50]]
             ],
             [
-                'attribute' => 'description',
-                'width' => '10%',
-                'hAlign' => 'center',
+                'attribute' => 'description_'.lange_code(),
+                'value' => function (\common\models\Products $model){
+                    return $model->getShortDescription(30);
+                },
             ],
 
             [

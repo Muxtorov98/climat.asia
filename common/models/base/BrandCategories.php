@@ -57,9 +57,9 @@ abstract class BrandCategories extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name_uz'], 'required'],
             [['status', 'is_deleted'], 'integer'],
-            [['name', 'image', 'url'], 'string', 'max' => 255],
+            [['name_uz', 'name_ru', 'image', 'url'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['url'], 'unique']
         ];

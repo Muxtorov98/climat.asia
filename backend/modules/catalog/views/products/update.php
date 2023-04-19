@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('models', '');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Products'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => (string)$model['name_'.lange_code()], 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Edit';
 ?>
 
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = 'Edit';
     <h1>
         <?= Yii::t('models', 'Products') ?>
         <small>
-                        <?= Html::encode($model->name) ?>
+                        <?= Html::encode($model['name_'.lange_code()]) ?>
         </small>
     </h1>
 
@@ -52,8 +52,10 @@ $this->params['breadcrumbs'][] = 'Edit';
     <div class="">
 
         <p>
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'text')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'name_uz')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'text_uz')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'text_ru')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'photoFile')->widget(FileInput::class,
                 [
                     'pluginOptions' => [
@@ -63,7 +65,8 @@ $this->params['breadcrumbs'][] = 'Edit';
                         'showUpload' => false,
                     ]
                 ]); ?>
-			<?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'description_uz')->textarea(['rows' => 4]) ?>
+            <?= $form->field($model, 'description_ru')->textarea(['rows' => 4]) ?>
             <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'brand_ct_id')->dropDownList(ProductHelper::getBrandList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
             <?= $form->field($model, 'pr_ct_id')->dropDownList(ProductHelper::getPrCtIdList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>

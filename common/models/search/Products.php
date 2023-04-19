@@ -19,7 +19,7 @@ public function rules()
 {
 return [
 [['id', 'viewed', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['url', 'name', 'image', 'description', 'text'], 'safe'],
+            [['url', 'name_uz','name_ru', 'image', 'description_uz', 'description_ru', 'text_uz','text_ru'], 'safe'],
 ];
 }
 
@@ -69,10 +69,13 @@ $query->andFilterWhere([
         ]);
 
         $query->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'name_uz', $this->name_uz])
+            ->andFilterWhere(['like', 'name_ru', $this->name_ru])
             ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'text', $this->text]);
+            ->andFilterWhere(['like', 'description_uz', $this->description_uz])
+            ->andFilterWhere(['like', 'description_ru', $this->description_ru])
+            ->andFilterWhere(['like', 'text_uz', $this->text_uz])
+            ->andFilterWhere(['like', 'text_ru', $this->text_ru]);
 
 return $dataProvider;
 }
