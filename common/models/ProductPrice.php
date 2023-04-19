@@ -60,18 +60,6 @@ class ProductPrice extends BaseProductPrice
         return $newModel;
     }
 
-    public static function createByProductId(
-        $product_id,
-        $price
-    )
-    {
-        $model = new ProductPrice();
-        $model->product_id = $product_id;
-        $model->price = $price;
-        $model->status = self::STATUS_ACTIVE;
-        return $model;
-    }
-
     public static function priceByProductId($product_id)
     {
        return self::find()

@@ -67,18 +67,26 @@ class Products extends BaseProducts
         return unlink(self::getPhotoAlias() . '/' . $this->image);
     }
 
+    public function getName()
+    {
+        return $this['name_'.lange_code()];
+    }
     public function getText()
     {
         return $this['text_'.lange_code()];
     }
+    public function getDescription()
+    {
+        return $this['description_'.lange_code()];
+    }
     public function getShortDescription($count)
     {
-        return StringHelper::truncateWords(strip_tags($this['description_'.lange_code()]), $count);
+        return StringHelper::truncateWords(strip_tags($this->getDescription()), $count);
     }
 
     public function getShortTex($count)
     {
-        return StringHelper::truncateWords(strip_tags($this['text_'.lange_code()]), $count);
+        return StringHelper::truncateWords(strip_tags($this->getText()), $count);
     }
 
     #region iSOLID
